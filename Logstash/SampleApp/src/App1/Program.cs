@@ -13,28 +13,35 @@ namespace App1
 
         static void Main(string[] args)
         {
-            XmlConfigurator.Configure();
-
-            var clientId = Guid.NewGuid();
-
-            var client = new TcpClient();
-            client.Connect(IPAddress.Parse("127.0.0.1"), 8001);
-
-            _logger.InfoFormat("Connected [Client: {0}]", clientId);
-
-            string line;
-
-            var streamWriter = new StreamWriter(client.GetStream());
-            streamWriter.WriteLine(clientId);
-
-            while (!String.IsNullOrEmpty(line = Console.ReadLine()))
+            try
             {
-                _logger.InfoFormat("Sending: {0} [Client: {1}]", line, clientId);
-                streamWriter.WriteLine(line);
-                streamWriter.Flush();
-            }
+                XmlConfigurator.Configure();
 
-            _logger.InfoFormat("Disconnecting [Client: {0}]", clientId);
+                var clientId = Guid.NewGuid();
+
+                var client = new TcpClient();
+                client.Connect(IPAddress.Parse("127.0.0.1"), 8001);
+
+                _logger.InfoFormat("Connected [Client: {0}]", clientId);
+
+                string line;
+
+                var streamWriter = new StreamWriter(client.GetStream());
+                streamWriter.WriteLine(clientId);
+
+                while (!String.IsNullOrEmpty(line = Console.ReadLine()))
+                {
+                    _logger.InfoFormat("Sending: {0} [Client: {1}]", line, clientId);
+                    streamWriter.WriteLine(line);
+                    streamWriter.Flush();
+                }
+
+                _logger.InfoFormat("Disconnecting [Client: {0}]", clientId);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("FAILED", ex);
+            }
         }
     }
 }
