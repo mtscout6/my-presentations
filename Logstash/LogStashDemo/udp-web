@@ -5,8 +5,19 @@ start java -jar logstash-1.3.3-flatjar.jar agent -f logstash-udp.conf -- web
 
 sleep 10s
 
-start ../SampleApp/src/App1/bin/Debug/App1.exe
-start ../SampleApp/src/App1/bin/Debug/App1.exe
 start ../SampleApp/src/App2/bin/Debug/App2.exe
+
+sleep 2s
+
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
+start ../SampleApp/src/App1/bin/Debug/App1.exe -a
 
 start http://localhost:9292

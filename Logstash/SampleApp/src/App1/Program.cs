@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 using log4net;
 using log4net.Config;
 
@@ -29,11 +30,29 @@ namespace App1
                 var streamWriter = new StreamWriter(client.GetStream());
                 streamWriter.WriteLine(clientId);
 
-                while (!String.IsNullOrEmpty(line = Console.ReadLine()))
+                if (args != null && args[0] == "-a")
                 {
-                    _logger.InfoFormat("Sending: {0} [Client: {1}]", line, clientId);
-                    streamWriter.WriteLine(line);
-                    streamWriter.Flush();
+                    var random = new Random();
+                    int index = 0;
+
+                    while (true)
+                    {
+                        line = string.Format("application event {0}", index++);
+                        _logger.InfoFormat("Sending: {0} [Client: {1}]", line, clientId);
+                        streamWriter.WriteLine(line);
+                        streamWriter.Flush();
+
+                        Thread.Sleep(random.Next(300, 5000));
+                    }
+                }
+                else
+                {
+                    while (!String.IsNullOrEmpty(line = Console.ReadLine()))
+                    {
+                        _logger.InfoFormat("Sending: {0} [Client: {1}]", line, clientId);
+                        streamWriter.WriteLine(line);
+                        streamWriter.Flush();
+                    }
                 }
 
                 _logger.InfoFormat("Disconnecting [Client: {0}]", clientId);
