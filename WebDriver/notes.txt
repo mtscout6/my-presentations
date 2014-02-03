@@ -1,0 +1,7 @@
+Spec - http://www.w3.org/TR/webdriver/
+
+WebDriver is an API defined by W3C. Selenium is an implementation that consumes that API.
+
+Strongly based on Selenium since it's the biggest guy in the schoolyard.
+
+
