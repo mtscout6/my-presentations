@@ -4,4 +4,16 @@ WebDriver is an API defined by W3C. Selenium is an implementation that consumes 
 
 Strongly based on Selenium since it's the biggest guy in the schoolyard.
 
+Examples:
 
+  Bad
+    Driver.FindElements(By.CssSelector(".class-name"))
+      .Select(x => x.FindElement(By.TagName("input")))
+      .ToArray()
+      .Select(x => x.GetAttribute("name"))
+      .ToList()
+
+  Fix
+    Driver.FindElements(By.CssSelector(".class-name input"))
+      .Select(x => x.GetAttribute("name"))
+      .ToList()
