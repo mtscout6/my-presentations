@@ -1,11 +1,11 @@
 Presentations I have or will give
 =================================
 
-### [Logstash (2014.01.31) - ExtendHealth Weekly Dev Presentation](https://www.youtube.com/watch?v=U3m0jKygAqU)
+### [Logstash _(2014.01.31)_ - EH Weekly Dev Presentation](https://www.youtube.com/watch?v=U3m0jKygAqU)
 
 * High level overview of [Logstash](http://logstash.net/), basic architecture and use
 
-### [WebDriver & Selenium (2014.02.7) - ExtendHealth Weekly Dev Presentation](https://www.youtube.com/watch?v=mZOTCF3EXug#t=318)
+### [WebDriver & Selenium _(2014.02.07)_ - EH Weekly Dev Presentation](https://www.youtube.com/watch?v=mZOTCF3EXug#t=318)
 
 * Introduction to WebDriver
 * Pitfalls to avoid
