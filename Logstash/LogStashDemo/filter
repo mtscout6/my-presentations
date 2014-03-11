@@ -1,13 +1,13 @@
 #!/bin/bash
 rm -rf data
 
-start java -jar logstash-1.3.3-flatjar.jar agent -f logstash-udp.conf -- web
+start java -jar logstash-1.3.3-flatjar.jar agent -f filter.conf -- web
 
 rm ../SampleApp/src/App1/bin/Debug/App1.exe.config
 rm ../SampleApp/src/App2/bin/Debug/App2.exe.config
 
-cp udp-app-configs/App1.exe.config ../SampleApp/src/App1/bin/Debug/App1.exe.config
-cp udp-app-configs/App2.exe.config ../SampleApp/src/App2/bin/Debug/App2.exe.config
+cp filters/App1.exe.config ../SampleApp/src/App1/bin/Debug/App1.exe.config
+cp filters/App2.exe.config ../SampleApp/src/App2/bin/Debug/App2.exe.config
 
 sleep 10s
 
