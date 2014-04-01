@@ -31,6 +31,32 @@
       }
     </script>
 
+    <style>
+      img[alt=trilby-lrg], img[alt=hard-hat-lrg] {
+        width: 100px;
+        border: 1px solid #eeeeee !important;
+      }
+      img[alt=trilby-sml], img[alt=hard-hat-sml1], img[alt=hard-hat-sml2] {
+        width: 60px;
+        border: none !important;
+      }
+      img[alt=hard-hat-sml1] {
+        position: relative;
+        top: -136px;
+        left: -140px;
+      }
+      img[alt=hard-hat-sml2] {
+        position: relative;
+        top: -264px;
+        left: 23px;
+      }
+      img[alt=trilby-sml] {
+        position: relative;
+        top: -136px;
+        left: 126px;
+      }
+    </style>
+
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
@@ -65,7 +91,7 @@
           v:## Move plants relative to each other to take advantage of similar environments
           v:### Overgrown plants get split and pruned
 
-          ###Colors that clash get moved to more aesthetically pleasing locations
+          ### Colors that clash get moved to more aesthetically pleasing locations
           v:## Pull weeds, fertilize plants in need of some extra help
           v:## Constantly monitor the health of the garden, and make adjustments
           v:![Farmville](/images/farmville.jpg)
@@ -77,12 +103,61 @@
           - Repeatable
           - Reportable
 
-          s:## Rewriting, reworking, and re-architecting code is collectively known as refactoring
-
           s:## Why refactor?
-          ## It Works!
+          ## It works now!
 
           v:![Get in there](/images/if-it-fits-ship-it.jpeg)
+
+          v:## Software Entropy
+ 
+          v:## Law of Physics
+
+          ### Entropy
+
+          - Lack of order or predictability
+          - Gradual decline into disorder
+
+          v:## We also call it
+
+          Technical Debt
+
+          Software Rot
+
+          Software Bloat
+
+          Feature Creep
+
+          v:## This is all Software Entropy
+
+          v:## Contributing factors
+
+          ### Lack of order or predictability
+
+          - Business pressures
+          - Lack of process or understanding
+          - Lack of building loosely coupled components
+          - Lack of test suite
+          - Lack of documentation
+          - Lack of collaboration
+          - Parallel development
+          - Delayed refactoring
+          - Lack of knowledge
+
+          v:## Gradual decline into disorder
+
+          ## Technical Debt
+
+          Compound interest makes future fixes harder and harder to accomplish
+
+          v:## Broken Windows
+
+          ![Broken Windows](/images/pittsburg-cinema.jpg)
+
+          v:![](/images/slop_feedback_loop.jpg)
+
+          v:## Refactor Early
+
+          ##Refactor Often
 
           s:## Signs you should you refactor
           v:## Duplication
@@ -93,8 +168,38 @@
 
           Changes in one location directly affect another
 
+          Note: This is beyond interface boundaries
+
           v:## Outdated Knowledge
           v:## Performance
+
+          s:## ![](/images/cat-refactoring.gif)
+
+          s:## Workflow of Refactoring
+
+          ![](/images/red-green-refactor-repeat.png)
+
+          v:## Two hats metaphor
+
+          ### Refactoring
+
+          Small behavior preserving changes
+
+          ![trilby-lrg](/images/trilby.svg)
+
+          ### Adding Function
+
+          Adding new tests, breaking old ones. Advised to keep it small and return to green tests quickly.
+
+          ![hard-hat-lrg](/images/hard-hat.svg)
+
+          v:## Workflow of Refactoring
+
+          ![](/images/red-green-refactor-repeat.png)
+
+          ![hard-hat-sml1](/images/hard-hat.svg)
+          ![hard-hat-sml2](/images/hard-hat.svg)
+          ![trilby-sml](/images/trilby.svg)
 
           s:## Test src
 
@@ -108,6 +213,7 @@
           s:## Resources
 
           - "The Pragmatic Programmer" - By Andrew Hunt, and David Thomas
+          - [Workflows of Refactoring](http://martinfowler.com/articles/workflowsOfRefactoring/) - Martin Fowler
 
         </section>
       </div>
