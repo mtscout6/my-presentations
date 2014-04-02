@@ -173,11 +173,25 @@
           v:## Outdated Knowledge
           v:## Performance
 
-          s:## ![](/images/cat-refactoring.gif)
+          s:![](/images/grumpy-cat.jpg)
+          v:![](/images/cat-refactoring.gif)
+          
+          s:## How can we make refactoring sexy
 
-          s:## Workflow of Refactoring
+          ![](/images/Refactoring-sexy.png)
+
+          v:## Workflow of Refactoring
 
           ![](/images/red-green-refactor-repeat.png)
+
+          v:![](/images/code-is-fine.png)
+
+          v:## Workflow of Refactoring
+
+          ![](/images/red-green-refactor-repeat.png)
+
+          v:![](/images/aint-nobody-got-time-for-that.gif)
+          v:![](/images/cat-refactoring.gif)
 
           v:## Two hats metaphor
 
@@ -201,14 +215,502 @@
           ![hard-hat-sml2](/images/hard-hat.svg)
           ![trilby-sml](/images/trilby.svg)
 
-          s:## Test src
+          s:## Example Code
+
+          s:## Decompose Conditional
 
           ```
-          public void test()
-          {
-              Console.WriteLine("test");
+          if (data.before(SUMMER_START) || date.after(SUMMER_END))
+            charge = quantity * _winterRate + _winterServiceCharge;
+          else
+            charge = quantity * _summerRate;
+          ```
+
+          v:## Decompose Conditional
+
+          ```
+          if (notSummer(date))
+            charge = winterCharge(quantity);
+          else
+            charge = summerCharge(quantity);
+          ```
+
+          s:## Consolidate Conditional Expression
+
+          ```
+          double disabilityAmount() {
+            if (_senority < 2) return 0;
+            if (_monthsDisabled > 12) return 0;
+            if (_isPartTime) return 0;
+            // Compute the disability amount
           }
           ```
+
+          v:## Consolidate Conditional Expression
+
+          ```
+          double disabilityAmount() {
+            if (isNotEligableForDisability()) return 0;
+            // Compute the disability amount
+          }
+          ```
+
+          s:## Consolidate Duplicate Conditional Fragments
+
+          ```
+          if (isSpecialDeal()) {
+            total = price * 0.95;
+            send();
+          }
+          else {
+            total = price * 0.98;
+            send();
+          }
+          ```
+
+          v:## Consolidate Duplicate Conditional Fragments
+
+          ```
+          if (isSpecialDeal())
+            total = price * 0.95;
+          else
+            total = price * 0.98;
+          send();
+          ```
+
+          s:## Introduce Assertion
+
+          ```
+          double getExpenseLimit() {
+            // should have either expense limit or a primary project
+            return (_expenseLimit != NULL_EXPENSE) ?
+              _expenseLimit:
+              _primaryProject.getMemberExpenseLimit();
+          }
+          ```
+
+          v:## Introduce Assertion
+
+          ```
+          double getExpenseLimit() {
+            Assert.isTrue (_expenseLimit != NULL_EXPENSE || _primaryProject != null);
+            return (_expenseLimit != NULL_EXPENSE) ?
+              _expenseLimit:
+              _primaryProject.getMemberExpenseLimit();
+          }
+          ```
+
+          s:## Introduce Foreign Method
+
+          ```
+          Date newStart = new Date (previousEnd.getYear(),
+          previousEnd.getMonth(), previousEnd.getDate() + 1);
+          ```
+
+          v:## Introduce Foreign Method
+
+          ```
+          Date newStart = nextDay(previousEnd);
+
+          private static Date nextDay(Date arg) {
+            return new Date (arg.getYear(),arg.getMonth(), arg.getDate() + 1);
+          }
+          ```
+
+          s:## Replace Error Code with Exception
+
+          ```
+          int withdraw(int amount) {
+            if (amount > _balance)
+              return -1;
+            else {
+              _balance -= amount;
+              return 0;
+            }
+          }
+          ```
+
+          v:## Replace Error Code with Exception
+
+          ```
+          void withdraw(int amount) throws BalanceException {
+            if (amount > _balance) throw new BalanceException();
+            _balance -= amount;
+          }
+          ```
+
+          s:## Replace Exception with Test
+
+          ```
+          double getValueForPeriod (int periodNumber) {
+            try {
+              return _values[periodNumber];
+            } catch (ArrayIndexOutOfBoundsException e) {
+              return 0;
+            }
+          }
+          ```
+
+          v:## Replace Exception with Test
+
+          ```
+          double getValueForPeriod (int periodNumber) {
+            if (periodNumber >= _values.length) return 0;
+            return _values[periodNumber];
+          }
+          ```
+
+          s:## Replace Magic Number with Symbolic Constant
+
+          ```
+          double potentialEnergy(double mass, double height) {
+            return mass * height * 9.81;
+          }
+          ```
+
+          v:## Replace Magic Number with Symbolic Constant
+
+          ```
+          double potentialEnergy(double mass, double height) {
+            return mass * GRAVITATIONAL_CONSTANT * height;
+          }
+          static final double GRAVITATIONAL_CONSTANT = 9.81;
+          ```
+
+          s:## Replace Nested Conditional with Gaurd Clauses
+
+          ```
+          double getPayAmount() {
+            double result;
+            if (_isDead) result = deadAmount();
+            else {
+              if (_isSeparated) result = separatedAmount();
+              else {
+                if (_isRetired) result = retiredAmount();
+                else result = normalPayAmount();
+              };
+            }
+            return result;
+          };
+          ```
+
+          Note: Arrowhead anti pattern
+
+          v:## Replace Nested Conditional with Gaurd Clauses
+
+          ```
+          double getPayAmount() {
+            if (_isDead) return deadAmount();
+            if (_isSeparated) return separatedAmount();
+            if (_isRetired) return retiredAmount();
+            return normalPayAmount();
+          };  
+          ```
+
+          s:## Replace Method with Method Object
+
+          ```
+          class Order...
+          double price() {
+            double primaryBasePrice;
+            double secondaryBasePrice;
+            double tertiaryBasePrice;
+            // long computation;
+            ...
+          }
+          ```
+
+          v:## Replace Method with Method Object
+
+          ![](/images/replace-method-with-method-object.png)
+
+          s:## What should we do here?
+
+          ```
+          class Something
+          {
+            public void doSomething()
+            {
+              if (obj.arg1 == condition1)
+                // computation
+              else if (obj.arg2 == condition2)
+                // computation
+              else if (obj.arg3 == condition3)
+                // computation
+              else
+                // computation
+            }
+          }
+          ```
+
+          v:![](/images/code-smell-yoda.jpg)
+
+          v:## Strategy Pattern
+
+          ```
+          class Something {
+            IEnumerable<IStrategy> _strategies;
+
+            public Something(IEnumerable<IStrategy> strategies) {
+              _strategies = strategies;
+            }
+
+            public void doSomething() {
+              _strategies.FirstOrDefault(s => s.Matches(obj)).Execute(obj);
+            }
+          }
+          ```
+
+          v:## How did we get to that?
+
+          v:## How did we get to that? (Step 1)
+
+          ```
+          interface IStrategy {
+            bool Matches(object obj);
+            void Execute(object obj);
+          }
+          ```
+
+          ```
+          class ConditionalStrategy1 : IStrategy {
+            public bool Matches(object obj) {
+              return obj.arg1 == conditional1;
+            }
+
+            public void Execute(object obj) {
+              // computation
+            }
+          }
+          ```
+
+          ```
+          class Something
+          {
+            public void doSomething()
+            {
+              var strat1 = new ConditionalStrategy1();
+
+              if (strat1.Matches(obj))
+                strat1.Execute(obj);
+              else if (obj.arg2 == condition2)
+                // computation
+              else if (obj.arg3 == condition3)
+                // computation
+              else
+                // computation
+            }
+          }
+          ```
+
+          v:## How did we get to that? (Step 2)
+
+          ```
+          class ConditionalStrategy2 : IStrategy {
+            public bool Matches(object obj) {
+              return obj.arg2 == conditional2;
+            }
+
+            public void Execute(object obj) {
+              // computation
+            }
+          }
+          ```
+
+          ```
+          class Something
+          {
+            public void doSomething()
+            {
+              var strat1 = new ConditionalStrategy1();
+              var strat2 = new ConditionalStrategy2();
+
+              if (strat1.Matches(obj))
+                strat1.Execute(obj);
+              else if (strat2.Matches(obj))
+                strat2.Execute(obj);
+              else if (obj.arg3 == condition3)
+                // computation
+              else
+                // computation
+            }
+          }
+          ```
+
+          v:## How did we get to that? (Step 3)
+
+          ```
+          class ConditionalStrategy3 : IStrategy {
+            public bool Matches(object obj) {
+              return obj.arg2 == conditional2;
+            }
+
+            public void Execute(object obj) {
+              // computation
+            }
+          }
+          ```
+
+          ```
+          class Something
+          {
+            public void doSomething()
+            {
+              var strat1 = new ConditionalStrategy1();
+              var strat2 = new ConditionalStrategy2();
+              var strat3 = new ConditionalStrategy3();
+
+              if (strat1.Matches(obj))
+                strat1.Execute(obj);
+              else if (strat2.Matches(obj))
+                strat2.Execute(obj);
+              else if (strat3.Matches(obj))
+                strat3.Execute(obj);
+              else
+                // computation
+            }
+          }
+          ```
+
+          v:## How did we get to that? (Step 4)
+
+          ```
+          class ConditionalStrategyDefaultCase : IStrategy {
+            public bool Matches(object obj) {
+              return true;
+            }
+
+            public void Execute(object obj) {
+              // computation
+            }
+          }
+          ```
+
+          ```
+          class Something
+          {
+            public void doSomething()
+            {
+              var strat1 = new ConditionalStrategy1();
+              var strat2 = new ConditionalStrategy2();
+              var strat3 = new ConditionalStrategy3();
+              var stratDefault = new ConditionalStrategyDefaultCase();
+
+              if (strat1.Matches(obj))
+                strat1.Execute(obj);
+              else if (strat2.Matches(obj))
+                strat2.Execute(obj);
+              else if (strat3.Matches(obj))
+                strat3.Execute(obj);
+              else
+                stratDefault.Execute();
+            }
+          }
+          ```
+
+          v:## How did we get to that? (Step 5)
+
+          ```
+          class Something
+          {
+            public void doSomething()
+            {
+              var strategies = new [] {
+                new ConditionalStrategy1(),
+                new ConditionalStrategy2(),
+                new ConditionalStrategy3(),
+                new ConditionalStrategyDefaultCase()
+              };
+
+              strategies.FirstOrDefault(s => s.Matches(obj)).Execute(obj);
+            }
+          }
+          ```
+
+          v:## Strategy Pattern
+
+          ```
+          class Something {
+            IEnumerable<IStrategy> _strategies;
+
+            public Something(IEnumerable<IStrategy> strategies) {
+              _strategies = strategies;
+            }
+
+            public void doSomething() {
+              _strategies.FirstOrDefault(s => s.Matches(obj)).Execute(obj);
+            }
+          }
+          ```
+
+          ```
+          interface IStrategy {
+            bool Matches(object obj);
+            void Execute(object obj);
+          }
+          ```
+
+          ```
+          class ConditionalStrategy1 : IStrategy {
+            public bool Matches(object obj) {
+              return obj.arg1 == conditional1;
+            }
+
+            public void Execute(object obj) {
+              // computation
+            }
+          }
+          ```
+
+          v:## Strategy Pattern (Vertical Reading)
+
+          ```
+          class Something {
+            IEnumerable<IStrategy> _strategies;
+
+            public Something(IEnumerable<IStrategy> strategies) {
+              _strategies = strategies;
+            }
+
+            public void doSomething() {
+              _strategies.FirstOrDefault(s => s.Matches(obj))
+                .Execute(obj);
+            }
+          }
+          ```
+
+          ```
+          interface IStrategy {
+            bool Matches(object obj);
+            void Execute(object obj);
+          }
+          ```
+
+          ```
+          class ConditionalStrategy1 : IStrategy {
+            public bool Matches(object obj) {
+              return obj.arg1 == conditional1;
+            }
+
+            public void Execute(object obj) {
+              // computation
+            }
+          }
+          ```
+
+          v:## Don't forget to test first
+
+          ![](/images/tdd-house-fire.jpg)
+
+          s:## How do you know you're refactoring was useful?
+
+          ![](/images/understand-with-hours.jpg)
+
+          v:## Code Reviews
+
+          (Another day maybe?)
+
+          s:# Questions?
 
           s:## Resources
 
