@@ -69,25 +69,25 @@ Intellisense for vim
 
 Variables ??
 
-Prefix	   Meaning
+Prefix     Meaning
 ---------------------------------------------------------------------
-g:varname	 The variable is global
-s:varname	 The variable is local to the current script file
-w:varname	 The variable is local to the current editor window
-t:varname	 The variable is local to the current editor tab
-b:varname	 The variable is local to the current editor buffer
-l:varname	 The variable is local to the current function
-a:varname	 The variable is a parameter of the current function
-v:varname	 The variable is one that Vim predefines
+g:varname  The variable is global
+s:varname  The variable is local to the current script file
+w:varname  The variable is local to the current editor window
+t:varname  The variable is local to the current editor tab
+b:varname  The variable is local to the current editor buffer
+l:varname  The variable is local to the current function
+a:varname  The variable is a parameter of the current function
+v:varname  The variable is one that Vim predefines
 
 Psuedovariables
 
-Prefix	     Meaning
+Prefix       Meaning
 ---------------------------------------------------------------------
-&varname	   A Vim option (local option if defined, otherwise global)
+&varname     A Vim option (local option if defined, otherwise global)
 &l:varname   A local Vim option
 &g:varname   A global Vim option
-@varname	   A Vim register
-$varname	   An environment variable
+@varname     A Vim register
+$varname     An environment variable
 
 ## Check out my [dotfiles](https://github.com/mtscout6/dotfiles)
