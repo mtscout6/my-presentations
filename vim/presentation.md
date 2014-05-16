@@ -12,6 +12,10 @@ Two popular managers:
 - Vundle
 - Pathogen
 
+## Airline
+
+More aesthetically pleasing status bar
+
 ## Ctags
 
 Parses code files and generates a meaningful "tag" file which is used by vim to "jump to definition"
