@@ -24,7 +24,7 @@ Don't use the default shipped with mac. Instead install with `brew install ctags
 
 Since you have to run the `ctags` command to update the "tags" file I use git commit hooks and the vim-autotag plugin to help me out
 
-Shameless plug: [Craig Emery](https://github.com/craigemery) Originally wrote a vim plugin to do the auto tagging on save, but I ran into problems with it. So I use my [own](https://github.com/mtscout6/vim-ctags-autotag)
+Shameless plug: [Craig Emery](https://github.com/craigemery) Originally wrote a vim plugin to do the auto tagging on save, but I ran into problems with it being embedded within his dotfiles repo. So I use my [own](https://github.com/mtscout6/vim-ctags-autotag)
 
 ## Ctrl-P
 
