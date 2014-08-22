@@ -104,7 +104,8 @@ _Each comes with a corresponding pre and post script hook <br /> (ie pretest and
 
 ----
 
-# Install scripts are an anti-pattern
+## Install scripts are generally an
+## anti-pattern
 
 ----
 
