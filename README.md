@@ -22,3 +22,11 @@ Presentations I have or will give
 * basic architecture and use
 * implementation strategy
 * [_src_](https://github.com/mtscout6/my-presentations/)
+
+
+## Presentation Setup
+
+```
+npm install reveal-md -g
+reveal-md
+```
