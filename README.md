@@ -23,6 +23,22 @@ Presentations I have or will give
 * implementation strategy
 * [_src_](https://github.com/mtscout6/my-presentations/)
 
+### [Refactoring to Patterns _(2014.04.04)_ - EH Weekly Dev Presentation](https://www.youtube.com/watch?v=uZ8fH550rXM)
+
+* Why refactor?
+* What to refactor?
+* When to refactor?
+
+### [VIM _(2014.05.16)_ - EH Weekly Dev Presentation](https://www.youtube.com/watch?v=EkImFaT4NUo)
+
+* Overview of many vim plugins to give you a viable IDE
+
+### NPM _(2014.08.22)_ - EH Weekly Dev Presentation
+
+* Introduction to NPM
+* Module loading procedures
+* Good/bad practices
+* Introduction to NPM Enterprise
 
 ## Presentation Setup
 
