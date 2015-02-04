@@ -40,6 +40,10 @@ Presentations I have or will give
 * Good/bad practices
 * Introduction to NPM Enterprise
 
+### Docker Selenium Lightning Talk (2015.02.04) - Utah Docker Meetup
+
+* Quick demo of docker-selenium
+
 ## Presentation Setup
 
 ```
